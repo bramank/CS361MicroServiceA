@@ -61,3 +61,9 @@ _print(f"Received reply: {message}")_
 
 ## Stopping the Conversion Microservice
 To stop 'convertorMicroservice.py', send a 'stop' command in the form of _{"command": "stop"}_ to shutdown the microservice from a client. 
+
+
+## UML Sequence Diagram
+
+![Sequence Diagram](https://www.plantuml.com/plantuml/png/bPD1ZzGm38Nl-HLMJ-m1xObB3sYb2Wv80-psjWXLKUg5i6bSRBV0loTjr9cCPWPsUelplMSxJxqJjQpJ48my-pXQjWDOfyIj_Wa8zXSA3MZM4ZJ1OrIJAFNEZpOgL8_8jBk7XgBYRwt02ZpkxlFnFDgIUyOzcK_7O5BFoE8fmiux9a6UlSDLKXQCoHF1wxT5qneQHgkupLH2Mxyzy_1k6-W2HZ6YKr22IjrOtzu6SZPy9z7wJVeg4uX6Q37sFdw31_mveQWOIDzPGqbazqCelkBCThrLUxC83jYYAHUjax53FoDyQ3zztBgicX8xbNrcSYXoZGBvYNY0GmQhY4Q5BqKkxUGMuwSfV5tlJumlRoqZHS5YRGo2H-RlhG_ONscCpCJTPf-Tq-Nfm-POQc1qSvPcEDSBedYzR6eMl_-aAafZvsWOREnlp0iIRPC0cYmm_ymcesq-cRlKSlbl_m80)
+
