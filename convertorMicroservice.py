@@ -1,20 +1,19 @@
 import zmq
 
-def convertor(value, unit):
+
+def convertor(value, input_unit, output_unit):
     conversions = {
-        'teaspoons': {'teaspoons': 1, 'tablespoons': 1/3, 'cups': 1/48},
-        'tablespoons': {'teaspoons': 3, 'tablespoons': 1, 'cups': 1/16},
-        'cups': {'teaspoons': 48, 'tablespoons': 16, 'cups': 1}
+        'tsp': {'tsp': 1, 'tbsp': 1/3, 'cups': 1/48},
+        'tbsp': {'tsp': 3, 'tbsp': 1, 'cups': 1/16},
+        'cups': {'tsp': 48, 'tbsp': 16, 'cups': 1}
     }
-    
-    if unit not in conversions:
-        raise ValueError(f"Unsupported unit: {unit}")
-    
-    result = {}
-    for units, factor in conversions[unit].items():
-        result[units] = round(value * factor, 2)
-    
-    return result
+
+    if input_unit not in conversions or output_unit not in conversions[input_unit]:
+        raise ValueError(f"Unsupported units: {input_unit} to {output_unit}")
+
+    converted_value = round(value * conversions[input_unit][output_unit], 2)
+    return converted_value
+
 
 def main():
     context = zmq.Context()
@@ -29,12 +28,14 @@ def main():
             break
         try:
             value = message['value']
-            unit = message['unit']
-            result = convertor(value, unit)
+            input_unit = message['input_unit']
+            output_unit = message['output_unit']
+            result = convertor(value, input_unit, output_unit)
             response = {"status": "success", "data": result}
         except Exception as e:
             response = {"status": "error", "message": str(e)}
         socket.send_json(response)
+
 
 if __name__ == "__main__":
     main()
